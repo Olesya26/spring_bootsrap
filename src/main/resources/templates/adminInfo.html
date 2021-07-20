@@ -36,7 +36,7 @@
         <td th:text="${user.getPasswordUser()}">Password</td>
         <td th:text="${user.getRoles()}">Role</td>
         <td>
-            <form th:action="@{/edit/{id}(id=${user.getId()})}">
+            <form th:action="@{/admin/edit/{id}(id=${user.getId()})}">
                 <input type="submit" value="Edit">
             </form>
         </td>

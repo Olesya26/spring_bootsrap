@@ -19,8 +19,8 @@ import java.util.Set;
 @Controller
 public class UserController {
 
-    private UserService userService;
-    private RoleService roleService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
     public UserController(UserService userService, RoleService roleService) {
@@ -64,7 +64,7 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @PutMapping(value = "{id}")
+    @PutMapping(value = "/admin/{id}")
     public String updateUser(@ModelAttribute User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
         Set<Role> roles = new HashSet<>();
         for (String role : checkBoxRoles) {
@@ -75,7 +75,7 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @GetMapping(value = "/edit/{id}")
+    @GetMapping(value = "/admin/edit/{id}")
     public String editUser(@PathVariable("id") long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("role",roleService.getAllRole());

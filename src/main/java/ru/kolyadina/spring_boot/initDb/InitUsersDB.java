@@ -24,7 +24,6 @@ public class InitUsersDB {
         this.roleService = roleService;
     }
 
-
     @PostConstruct
     public void initApiUserData() {
         Role user = new Role("ROLE_USER");
@@ -32,19 +31,13 @@ public class InitUsersDB {
         Role admin = new Role("ROLE_ADMIN");
         roleService.addRole(admin);
 
-        Set<Role> roleUser = new HashSet<>();
-        for (Role role : roleService.getAllRole()) {
-            if (role.getName().equals("ROLE_USER")) {
-                roleUser.add(role);
-            }
-        }
-        User user1 = new User("USER", "$2y$12$ckq8vl6/nGRcBNdOmRSgF.ZH3Dt7/OqoJvJZEXcxcQR32MrN8GiCG", // пароль USER
-                "Andrey", "Gorbunov", "andrey@yandex.com");
-        user1.setRoles(roleUser);
+        User user1 = new User("USER", "USER", "Andrey", "Gorbunov",
+                "andrey@yandex.com");
+        user1.setRoles(Set.of(user));
 
         Set<Role> roleAdmin = new HashSet<>(roleService.getAllRole());
-        User user2 = new User("ADMIN", "$2y$12$9gPYP/2rDjSAzo5BISb1tucVusJ50r/rDMnhnH0Y276kJ4RYkOJIC", // пароль ADMIN
-                "Olga", "Gorbunova", "olga@mail.ru");
+        User user2 = new User("ADMIN", "ADMIN", "Olga", "Gorbunova",
+                "olga@mail.ru");
         user2.setRoles(roleAdmin);
 
         userService.addUser(user1);

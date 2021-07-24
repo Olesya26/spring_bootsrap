@@ -29,15 +29,15 @@ public class UserController {
     }
 
     @GetMapping(value = "/")
-    public String get(){
-        return "hello";
+    public String login(){
+        return "login";
     }
 
     @GetMapping(value = "/user")
     public String getUserInfo(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("user", user);
         model.addAttribute("roles",user.getRoles());
-        return "userInfo";
+        return "userPanel";
     }
 
     @GetMapping(value = "/admin")

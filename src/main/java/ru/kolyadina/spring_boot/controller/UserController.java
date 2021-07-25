@@ -41,9 +41,11 @@ public class UserController {
     }
 
     @GetMapping(value = "/admin")
-    public String getAllUsers(Model model) {
+    public String getAllUsers(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("roles",user.getRoles());
         model.addAttribute("allUsers", userService.getAllUsers());
-        return "adminInfo";
+        return "adminPanel";
     }
 
     @GetMapping(value = "/admin/new")

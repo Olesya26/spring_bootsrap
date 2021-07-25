@@ -26,17 +26,20 @@ public class InitUsersDB {
 
     @PostConstruct
     public void initApiUserData() {
-        Role user = new Role("USER");
-        roleService.addRole(user);
         Role admin = new Role("ADMIN");
         roleService.addRole(admin);
 
-        User user1 = new User("user", "user", (byte) 20, "user@yandex.com", "USER");
-        user1.setRoles(Set.of(user));
+        Role user = new Role("USER");
+        roleService.addRole(user);
 
         Set<Role> roleAdmin = new HashSet<>(roleService.getAllRole());
         User user2 = new User("admin", "admin", (byte) 25, "admin@mail.ru","ADMIN");
         user2.setRoles(roleAdmin);
+
+        User user1 = new User("user", "user", (byte) 20, "user@yandex.com", "USER");
+        user1.setRoles(Set.of(user));
+
+
 
         userService.addUser(user1);
         userService.addUser(user2);

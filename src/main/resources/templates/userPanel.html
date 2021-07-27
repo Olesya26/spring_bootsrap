@@ -19,6 +19,12 @@
         .row{
             height: 100%;
         }
+        .container{
+           min-width: 1250px;
+        }
+        .card{
+            top: 10px;
+        }
         div.fix_block {
             width: 257px;
             position: fixed;
@@ -31,8 +37,9 @@
     <body class="bg-light">
         <nav class="navbar navbar-dark bg-dark fixed-top d-flex justify-content-between">
             <span>
-                <span class="navbar-brand font-weight-bold" th:text="${user.getEmail} + ' with roles:'"></span>
-                <span style="color: white" th:each="role : ${user.getRoles()}" th:text="${role} + ' '"></span>
+                <span class="navbar-brand font-weight-bold" th:text="${user.getEmail}"></span>
+                <span class="navbar-brand" th:text="'with roles:'"></span>
+                <span class="navbar-brand" th:each="role : ${user.getRoles()}" th:text="${role} + ' '"></span>
             </span>
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -56,9 +63,9 @@
 
                 <div class="col-10">
                     <br><br><br>
+                    <div class="container text-left">
                     <h1>User information-page</h1>
-                    <br>
-                    <div class="card bg-white">
+                        <div class="card bg-white" >
                         <h5 class="card-header">About user</h5>
                         <div class="card-body">
                             <table class="table table-light table-striped">

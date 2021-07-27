@@ -49,8 +49,8 @@ public class UserController {
 
     @GetMapping(value = "/admin/new")
     public String newUser(@AuthenticationPrincipal User user, Model model) {
-        model.addAttribute("userAdmin",user);
         model.addAttribute("user", new User());
+        model.addAttribute("userAdmin",user);
         model.addAttribute("roles", roleService.getAllRole());
         return "newUser";
     }
@@ -76,13 +76,6 @@ public class UserController {
         userService.updateUser(user);
         return "redirect:/admin";
     }
-
-//    @GetMapping(value = "/admin/edit/{id}")
-//    public String editUser(@PathVariable("id") long id, Model model) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        model.addAttribute("role",roleService.getAllRole());
-//        return "/admin/{id}";
-//    }
 
     @DeleteMapping(value = "/remove/{id}")
     public String deleteUser(@PathVariable("id") long id) {

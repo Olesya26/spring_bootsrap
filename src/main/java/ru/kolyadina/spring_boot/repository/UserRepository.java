@@ -6,7 +6,6 @@ import ru.kolyadina.spring_boot.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-//    User findByUserLogin(String userLogin);
     User findByEmail(String email);
 
 }

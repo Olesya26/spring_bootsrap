@@ -31,7 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-//                .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
                 .and()
@@ -42,8 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("passwordUser")
                 .successHandler(successHandler).permitAll()
                 .and().logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/");
+                .logoutUrl("/logout");
     }
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {

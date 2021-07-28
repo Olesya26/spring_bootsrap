@@ -29,7 +29,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/")
-    public String login(){
+    public String login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "logout", required = false) String logout, Model model){
+        model.addAttribute("error",error!=null);
+        model.addAttribute("logout",logout!=null);
         return "login";
     }
 
@@ -42,7 +45,6 @@ public class UserController {
     @GetMapping(value = "/admin")
     public String getAllUsers(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", user);
-        model.addAttribute("roles",user.getRoles());
         model.addAttribute("allUsers", userService.getAllUsers());
         return "adminPanel";
     }
@@ -51,7 +53,6 @@ public class UserController {
     public String newUser(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("userAdmin",user);
-        model.addAttribute("roles", roleService.getAllRole());
         return "newUser";
     }
 

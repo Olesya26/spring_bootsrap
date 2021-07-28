@@ -53,11 +53,6 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-//    @Override
-//    public User getUserByLogin(String userLogin) {
-//        return userRepository.findByUserLogin(userLogin);
-//    }
-
     @Override
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);

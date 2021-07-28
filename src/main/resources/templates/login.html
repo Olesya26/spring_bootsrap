@@ -17,8 +17,19 @@
 </head>
     <body class="bg-white">
         <div class="container text-left mt-5" >
+
             <form class="form-signin" method="post" action="/">
                 <h4 class="form-signin-heading font-weight-bold">Please sing in</h4>
+                    <div th:if="${error}">
+                        <div class="alert alert-danger" role="alert">
+                            Invalid Email or Password!
+                        </div>
+                    </div>
+                    <div th:if="${logout}">
+                        <div class="alert alert-success" role="alert">
+                            You have successfully logged out.
+                        </div>
+                    </div>
                     <label for="email" class="sr-only"></label>
                     <input type="text" name="email" id="email" class="form-control"
                            placeholder="Email address" required autofocus>
